@@ -30,6 +30,13 @@ public class Hobby
     {
     }
 
+    public Hobby(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+    
+    
+
     public String getName()
     {
         return name;
