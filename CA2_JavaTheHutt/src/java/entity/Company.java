@@ -30,9 +30,17 @@ public class Company extends InfoEntity
     public Company()
     {
     }
-    
-    
 
+    public Company(String name, String description, int cvr, int numEmployees, double marketValue, String email, Address address)
+    {
+        super(email, address);
+        this.name = name;
+        this.description = description;
+        this.cvr = cvr;
+        this.numEmployees = numEmployees;
+        this.marketValue = marketValue;
+    }
+      
     public String getName()
     {
         return name;
