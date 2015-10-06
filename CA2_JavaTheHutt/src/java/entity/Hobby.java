@@ -6,6 +6,7 @@
 package entity;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Hobby
  @Id
   private String name;
   private String description; 
-    @ManyToMany(mappedBy = "hobbyList")
+    @ManyToMany(mappedBy = "hobbyList",cascade={CascadeType.ALL})
     private List<Person> persons;
 
     public Hobby()
@@ -55,6 +56,10 @@ public class Hobby
     public void setDescription(String description)
     {
         this.description = description;
+    }
+    
+    public void addPerson(Person p){
+        this.persons.add(p);
     }
   
 }

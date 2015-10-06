@@ -7,6 +7,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,13 +30,18 @@ public class InfoEntity
  @GeneratedValue(strategy = GenerationType.SEQUENCE)  
   private Long ID;
   private String email;
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.ALL})
     private Address address;
-    @OneToMany(mappedBy = "infoEntity")
+    @OneToMany(mappedBy = "infoEntity",cascade={CascadeType.ALL})
     private List <Phone> phoneList = new ArrayList();
 
     public InfoEntity()
     {
+    }
+
+    public InfoEntity(String email, Address address) {
+        this.email = email;
+        this.address = address;
     }
 
     public String getEmail()
@@ -46,5 +52,9 @@ public class InfoEntity
     public void setEmail(String email)
     {
         this.email = email;
-    } 
+    }
+    
+    public void addPhone(Phone p){
+        this.phoneList.add(p);
+    }
 }

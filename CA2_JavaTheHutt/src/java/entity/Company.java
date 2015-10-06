@@ -30,6 +30,8 @@ public class Company extends InfoEntity
     public Company()
     {
     }
+    
+    
 
     public String getName()
     {

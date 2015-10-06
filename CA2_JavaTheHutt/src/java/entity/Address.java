@@ -7,6 +7,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,14 +25,22 @@ public class Address
   @Id
   private String street;
   private String additionalInfo;
-  @ManyToOne
+  @ManyToOne (cascade={CascadeType.ALL})
   private CityInfo cityInfo;
-  @OneToMany(mappedBy = "address")
+  @OneToMany(mappedBy = "address",cascade={CascadeType.ALL})
   private List <InfoEntity> infoEntityList = new ArrayList();
 
     public Address()
     {
     }
+
+    public Address(String street, String additionalInfo, CityInfo cityInfo) {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+        this.cityInfo = cityInfo;
+    }
+    
+    
   
     public String getStreet()
     {

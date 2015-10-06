@@ -8,6 +8,7 @@ package entity;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +27,19 @@ public class CityInfo
  @Id
   private String zip;
   private String city;
-  @OneToMany(mappedBy = "cityInfo")
+  @OneToMany(mappedBy = "cityInfo",cascade={CascadeType.ALL})
   private List <Address> addressList = new ArrayList();
 
     public CityInfo()
     {
     }
+
+    public CityInfo(String zip, String city) {
+        this.zip = zip;
+        this.city = city;
+    }
+    
+    
   
     public String getZip()
     {
@@ -51,6 +59,10 @@ public class CityInfo
     public void setCity(String city)
     {
         this.city = city;
+    }
+    
+    public void addAddress(Address a){
+        this.addressList.add(a);
     }
   
 }

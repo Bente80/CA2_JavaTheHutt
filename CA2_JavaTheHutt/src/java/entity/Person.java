@@ -7,6 +7,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,15 +26,16 @@ public class Person extends InfoEntity
 {
   private String firstName;
   private String lastName;  
-  @ManyToMany
+  @ManyToMany(cascade={CascadeType.ALL})
   private List <Hobby> hobbyList = new ArrayList();
 
     public Person()
     {
     }
-
-    public Person(String firstName, String lastName)
+    
+    public Person(String firstName, String lastName, String email, Address address)
     {
+        super(email,address);
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -57,4 +59,8 @@ public class Person extends InfoEntity
     {
         this.lastName = lastName;
     } 
+    
+    public void addHobby(Hobby h){
+        this.hobbyList.add(h);
+    }
 }
