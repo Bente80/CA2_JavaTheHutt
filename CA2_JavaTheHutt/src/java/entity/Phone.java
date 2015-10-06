@@ -19,8 +19,6 @@ import javax.persistence.ManyToOne;
 public class Phone
 {
  @Id
- @GeneratedValue(strategy = GenerationType.SEQUENCE)  
-  private Long ID;
   private String number;
   private String description;
     @ManyToOne

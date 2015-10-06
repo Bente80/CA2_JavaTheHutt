@@ -24,8 +24,6 @@ import javax.persistence.Transient;
 public class CityInfo
 {
  @Id
- @GeneratedValue(strategy = GenerationType.SEQUENCE)  
-  private Long ID;
   private String zip;
   private String city;
   @OneToMany(mappedBy = "cityInfo")

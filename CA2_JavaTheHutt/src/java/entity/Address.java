@@ -21,9 +21,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Address
 {
- @Id
- @GeneratedValue(strategy = GenerationType.SEQUENCE)  
-  private Long ID;
+  @Id
   private String street;
   private String additionalInfo;
   @ManyToOne

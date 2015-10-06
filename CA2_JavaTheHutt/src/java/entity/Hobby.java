@@ -21,8 +21,6 @@ import javax.persistence.ManyToMany;
 public class Hobby
 {
  @Id
- @GeneratedValue(strategy = GenerationType.SEQUENCE)  
-  private Long ID;
   private String name;
   private String description; 
     @ManyToMany(mappedBy = "hobbyList")
