@@ -43,14 +43,29 @@ public class Facade {
         return p;
     }
 
+    public Person saveProject(Person p) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.persist(p);
+        em.getTransaction().commit();
+        return p;
+    }
+
+    public void deleteProject(Long id) {
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.find(Person.class, id));
+        em.getTransaction().commit();
+    }
+
     public Person getPersonByPhone(String number) {
         EntityManager em = getEntityManager();
         Person person;
         try {
-            
+
             Phone p = em.find(Phone.class, number);
             person = em.find(Person.class, p.getInfoEntity().getId());
-            
+
         } finally {
             em.close();
         }
@@ -67,11 +82,10 @@ public class Facade {
         } finally {
             em.close();
         }
-        for(int i=0; i < personList.size(); i++){
+        for (int i = 0; i < personList.size(); i++) {
             Person p = personList.get(i);
             personList.set(i, p);
         }
-        
 
         return personList;
     }
@@ -118,7 +132,7 @@ public class Facade {
         }
         return personList;
     }
-    
+
     public List<Person> getPersonsByCity(String city) {
         EntityManager em = getEntityManager();
         List<Person> personList;

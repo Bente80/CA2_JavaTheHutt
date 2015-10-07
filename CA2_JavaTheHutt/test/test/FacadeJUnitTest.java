@@ -24,42 +24,60 @@ import sql.CreateData;
  */
 public class FacadeJUnitTest
 {
-        EntityManagerFactory emf;
-        EntityManager em;
+       
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+        Facade f = new Facade(emf); 
+        EntityManager em = emf.createEntityManager();
+        
+        
 
     public FacadeJUnitTest()
     {
-    
+        
     }
-    @Before
-    public void setUp(){
-        emf = Persistence.createEntityManagerFactory("PU");
-        em = emf.createEntityManager();
+    
+    @BeforeClass
+    public static void setUp(){
+//        CreateData.testData(em);
     }
     
     @Test
     public void getAllPersonsFromDatabaseTest()
     {
-        CreateData.testData(em);
-        Facade f = new Facade(emf);
         List<Person> p = f.getAllPersons();
         assertEquals(p.size(), 2);
     }
     
-//    @Test
-//    public void getonePersonByPhone()
-//    {
-//        CreateData.testData(em);
-//        Facade f = new Facade(emf);
-//        Person p = f.getPersonByPhone("33887590");
-//        assertEquals(p.getFirstName(), "Korben");
-//        
-//    }
+    @Test
+    public void getPersonById(){
+        Person p = f.getPersonById(4L);
+        assertEquals(p.getFirstName(), "Korben");
+    }
+    
+    @Test
+    public void getPersonsByZipCode(){
+        List<Person> l = f.getPersonsByZipCode("3487");
+        assertEquals(l.get(0).getFirstName(), "Korben");
+    }
+    
+    @Test
+    public void getPersonsByCity(){
+        List<Person> l = f.getPersonsByCity("Bullerby");
+        assertEquals(l.get(0).getFirstName(), "Korben");
+    }
+    
+    @Test
+    public void getonePersonByPhone()
+    {
+        Person p = f.getPersonByPhone("33887590");
+        assertEquals(p.getFirstName(), "Korben");
+        
+    }
+    
     @Test
     public void getAllZipFromDatabaseTest()
     {
-        CreateData.testData(em);
-        Facade f = new Facade(emf);
         List<String> allZipCodes = f.getAllZipCodes();
         assertEquals(allZipCodes.size(), 4);
     }

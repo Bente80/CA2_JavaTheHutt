@@ -76,6 +76,14 @@ public class CreateData
     
     }
         public static void testData(EntityManager em){
+            
+//            em.createQuery("DELETE FROM CityInfo").executeUpdate();
+//            em.createQuery("DELETE FROM Address").executeUpdate();
+//            em.createQuery("DELETE FROM Hobby").executeUpdate();
+//            em.createQuery("DELETE FROM Phone").executeUpdate();
+//            em.createQuery("DELETE FROM Person").executeUpdate();
+//            em.createQuery("DELETE FROM Company").executeUpdate();
+            
         CityInfo c = new CityInfo("3487","Bullerby");
         CityInfo c2 = new CityInfo("2720","Oenskebyen");
         CityInfo c3 = new CityInfo("2300","Amager");
