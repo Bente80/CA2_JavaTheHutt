@@ -39,9 +39,17 @@ public class Address
         this.additionalInfo = additionalInfo;
         this.cityInfo = cityInfo;
     }
-    
-    
-  
+
+    public CityInfo getCityInfo()
+    {
+        return cityInfo;
+    }
+
+    public void setCityInfo(CityInfo cityInfo)
+    {
+        this.cityInfo = cityInfo;
+    }
+     
     public String getStreet()
     {
         return street;
@@ -61,5 +69,4 @@ public class Address
     {
         this.additionalInfo = additionalInfo;
     }
-  
 }

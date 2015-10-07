@@ -17,31 +17,43 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 /**
  *
  * @author Bente
  */
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class InfoEntity
 {
- @Id
- @GeneratedValue(strategy = GenerationType.SEQUENCE)  
-  private Long ID;
-  private String email;
-    @ManyToOne(cascade={CascadeType.ALL})
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long ID;
+    private String email;
+    @ManyToOne(cascade =
+    {
+        CascadeType.ALL
+    })
     private Address address;
-    @OneToMany(mappedBy = "infoEntity",cascade={CascadeType.ALL})
-    private List <Phone> phoneList = new ArrayList();
+    @OneToMany(mappedBy = "infoEntity", cascade =
+    {
+        CascadeType.ALL
+    })
+    private List<Phone> phoneList = new ArrayList();
 
     public InfoEntity()
     {
     }
 
-    public InfoEntity(String email, Address address) {
+    public InfoEntity(String email, Address address)
+    {
         this.email = email;
         this.address = address;
+    }
+
+    public Address getAddress()
+    {
+        return address;
     }
 
     public String getEmail()
@@ -53,8 +65,15 @@ public class InfoEntity
     {
         this.email = email;
     }
-    
-    public void addPhone(Phone p){
+
+    public void addPhone(Phone p)
+    {
         this.phoneList.add(p);
     }
+
+    public List<Phone> getPhoneList()
+    {
+        return phoneList;
+    }
+
 }

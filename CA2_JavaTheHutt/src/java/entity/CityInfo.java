@@ -38,9 +38,7 @@ public class CityInfo
         this.zip = zip;
         this.city = city;
     }
-    
-    
-  
+      
     public String getZip()
     {
         return zip;
