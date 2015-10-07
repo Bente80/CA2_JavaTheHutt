@@ -38,6 +38,10 @@ public class Phone
         this.infoEntity = e;
     }
     
+    public InfoEntity getInfoEntity(){
+        return infoEntity;
+    }
+    
     public String getNumber()
     {
         return number;

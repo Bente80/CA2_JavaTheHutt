@@ -12,6 +12,7 @@ import entity.Company;
 import entity.Hobby;
 import entity.Person;
 import entity.Phone;
+import facade.Facade;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -30,6 +31,32 @@ public class CreateData
 //static List <String> email = new ArrayList();
 
     public static void main(String[] args) {
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+        Facade f = new Facade(emf);
+        EntityManager em = emf.createEntityManager();
+        CreateData.testData(em);
+        
+        Person p = f.getPersonById(3L);
+        System.out.println(p.getFirstName());
+        
+        List<Person> personList = f.getAllPersons();
+        System.out.println(personList.get(0).getFirstName());
+        System.out.println(personList.get(1).getFirstName());
+        System.out.println(personList.get(0).getEmail());
+        
+        List<String> allZip = f.getAllZipCodes();
+        System.out.println(allZip);
+        
+        List<Person> personsByZip = f.getPersonsByZipCode("3487");
+        System.out.println(personsByZip.get(0).getFirstName());
+        
+        List<Person> personsByCity = f.getPersonsByCity("Bullerby");
+        System.out.println(personsByCity.get(0).getFirstName());
+
+        Person scooby = f.getPersonByPhone("33887590");
+        System.out.println(scooby.getFirstName());
+    
 //        firstname.add("Hans");firstname.add("Peter");firstname.add("Grete");firstname.add("Erik");
 //        firstname.add("Lars");firstname.add("Sofus");firstname.add("Bubber");firstname.add("Nikita");
 //        

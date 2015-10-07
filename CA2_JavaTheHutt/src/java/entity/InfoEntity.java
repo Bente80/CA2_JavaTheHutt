@@ -50,6 +50,10 @@ public class InfoEntity
         this.email = email;
         this.address = address;
     }
+    
+    public Long getId(){
+        return ID;
+    }
 
     public Address getAddress()
     {

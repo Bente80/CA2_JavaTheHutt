@@ -8,6 +8,7 @@ package facade;
 import entity.CityInfo;
 import entity.Company;
 import entity.Person;
+import entity.Phone;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +30,7 @@ public class Facade {
         return emf.createEntityManager();
     }
 
-    public Person getPersonById(int id) {
+    public Person getPersonById(Long id) {
         EntityManager em = getEntityManager();
         Person p;
         try {
@@ -41,21 +42,19 @@ public class Facade {
         }
         return p;
     }
-    
+
     public Person getPersonByPhone(String number) {
         EntityManager em = getEntityManager();
-        Person p;
+        Person person;
         try {
-            em.getTransaction().begin();
-            TypedQuery<Person> qu = em.createQuery("SELECT p FROM Person p WHERE p.number = :number", Person.class);
-            qu.setParameter("number", number);
-            qu.setMaxResults(1);
-            p = qu.getSingleResult();
-            em.getTransaction().commit();
+            
+            Phone p = em.find(Phone.class, number);
+            person = em.find(Person.class, p.getInfoEntity().getId());
+            
         } finally {
             em.close();
         }
-        return p;
+        return person;
     }
 
     public List<Person> getAllPersons() {
@@ -68,9 +67,15 @@ public class Facade {
         } finally {
             em.close();
         }
+        for(int i=0; i < personList.size(); i++){
+            Person p = personList.get(i);
+            personList.set(i, p);
+        }
+        
+
         return personList;
     }
-    
+
     public List<Person> getPersonsByHobby(String hobby) {
         EntityManager em = getEntityManager();
         List<Person> personList;
@@ -85,7 +90,7 @@ public class Facade {
         }
         return personList;
     }
-    
+
     public List<String> getAllZipCodes() {
         EntityManager em = getEntityManager();
         List<String> zipList;
@@ -99,13 +104,28 @@ public class Facade {
         return zipList;
     }
 
-    public List<Person> getPersonsByZipCode(int zipCode) {
+    public List<Person> getPersonsByZipCode(String zipCode) {
         EntityManager em = getEntityManager();
         List<Person> personList;
         try {
             em.getTransaction().begin();
-            TypedQuery<Person> qu = em.createQuery("SELECT p FROM Person p WHERE p.zip = :zip", Person.class);
+            TypedQuery<Person> qu = em.createQuery("SELECT p FROM Person p Join p.address a Join a.cityInfo c WHERE c.zip = :zip", Person.class);
             qu.setParameter("zip", zipCode);
+            personList = qu.getResultList();
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return personList;
+    }
+    
+    public List<Person> getPersonsByCity(String city) {
+        EntityManager em = getEntityManager();
+        List<Person> personList;
+        try {
+            em.getTransaction().begin();
+            TypedQuery<Person> qu = em.createQuery("SELECT p FROM Person p Join p.address a Join a.cityInfo c WHERE c.city = :city", Person.class);
+            qu.setParameter("city", city);
             personList = qu.getResultList();
             em.getTransaction().commit();
         } finally {
@@ -129,7 +149,7 @@ public class Facade {
         }
         return c;
     }
-    
+
     public List<Company> getCompaniesByEmployeeNumber(int amount) {
         EntityManager em = getEntityManager();
         List<Company> companyList;
