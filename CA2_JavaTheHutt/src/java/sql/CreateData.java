@@ -45,7 +45,10 @@ public class CreateData
 //        
 //        email.add("scooby@hotmail.com");email.add("deathstar@hotmail.com");email.add("cirkus@hotmail.com");email.add("javathehutt@hotmail.com");
 //        email.add("bongobob@hotmail.com");email.add("threesome@hotmail.com");email.add("yogibear@hotmail.com");email.add("pooh@hotmail.com");
-//        
+//      
+    
+    }
+        public static void testData(EntityManager em){
         CityInfo c = new CityInfo("3487","Bullerby");
         CityInfo c2 = new CityInfo("2720","Oenskebyen");
         CityInfo c3 = new CityInfo("2300","Amager");
@@ -53,7 +56,7 @@ public class CreateData
         Address a = new Address("Torbenvej","34, 2.tv",c);
         Address a2 = new Address("Carl Holsters Alle","4",c2);
         Address a3 = new Address("Arne Jacobsen Alle","24",c3);
-        Address a4 = new Address("Aros Allé","8",c2);
+        Address a4 = new Address("Aros Allé","8",c4);
         c.addAddress(a);
         c2.addAddress(a2);
         c3.addAddress(a3);
@@ -89,8 +92,8 @@ public class CreateData
         person2.addHobby(h4);
 ////////////        h6.addPerson(person);
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
-        EntityManager em = emf.createEntityManager();
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+//        EntityManager em = emf.createEntityManager();
         
         em.getTransaction().begin();
         em.persist(person);
@@ -98,8 +101,7 @@ public class CreateData
         em.persist(company);
         em.persist(company2);
         em.getTransaction().commit();
-        em.close();
-        
-        
+//        em.close();
+               
     }
 }
