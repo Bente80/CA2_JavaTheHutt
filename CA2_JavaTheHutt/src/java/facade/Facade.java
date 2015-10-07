@@ -43,7 +43,7 @@ public class Facade {
         return p;
     }
 
-    public Person saveProject(Person p) {
+    public Person savePerson(Person p) {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.persist(p);
@@ -51,11 +51,19 @@ public class Facade {
         return p;
     }
 
-    public void deleteProject(Long id) {
+    public void deletePerson(Long id) {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         em.remove(em.find(Person.class, id));
         em.getTransaction().commit();
+    }
+    
+    public Person updatePerson(Person p){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        em.refresh(p);
+        em.getTransaction().commit();
+        return p;
     }
 
     public Person getPersonByPhone(String number) {

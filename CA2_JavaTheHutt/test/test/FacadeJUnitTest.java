@@ -22,6 +22,7 @@ import sql.CreateData;
  *
  * @author Bente
  */
+
 public class FacadeJUnitTest
 {
        
@@ -34,12 +35,12 @@ public class FacadeJUnitTest
 
     public FacadeJUnitTest()
     {
+        CreateData.testData(em);
         
     }
     
     @BeforeClass
     public static void setUp(){
-//        CreateData.testData(em);
     }
     
     @Test
@@ -51,7 +52,7 @@ public class FacadeJUnitTest
     
     @Test
     public void getPersonById(){
-        Person p = f.getPersonById(4L);
+        Person p = f.getPersonById(3L);
         assertEquals(p.getFirstName(), "Korben");
     }
     
