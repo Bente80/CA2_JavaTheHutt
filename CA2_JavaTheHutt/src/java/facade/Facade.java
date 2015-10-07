@@ -64,7 +64,8 @@ public class Facade {
         em.getTransaction().begin();
         em.refresh(p);
         em.getTransaction().commit();
-        return p;
+        Person updatedPerson = em.find(Person.class, id);
+        return updatedPerson;
     }
 
     public Person getPersonByPhone(String number) {
