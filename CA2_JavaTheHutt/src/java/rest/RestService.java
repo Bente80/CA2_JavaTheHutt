@@ -118,7 +118,7 @@ public class RestService
     public Response createAPerson(String person)
     {
         Person p = gson.fromJson(person, Person.class);
-        f.saveProject(p);
+        f.savePerson(p);
         return Response.status(Response.Status.CREATED).type(MediaType.APPLICATION_JSON).entity(gson.toJson(p)).build();
     }
 
@@ -129,21 +129,21 @@ public class RestService
      * @return an HTTP response with content of the updated or created resource.
      */
     
-//    @PUT
-//    @Path("{id}")
-//    @Consumes("application/json")
-//    @Produces("application/json")
-//    public Response EditAnExsistentPerson(@PathParam("id") String id)
-//    {
-//      f.assignUserToProject((new Long(projectid)),(new Long(userid))); 
-//        return Response.status(Response.Status.OK).entity(makeProject(Facade.findProject(new Long(projectid))).toString()).build(); 
-//    }
+    @PUT
+    @Path("{id}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public Response EditAnExsistentPerson(@PathParam("id") String id)
+    {
+      f.updatePerson(new Long(id)); 
+        return Response.status(Response.Status.OK).entity(makePerson(f.getPersonById(new Long(id))).toString()).build(); 
+    }
     
     @DELETE
     @Path("{id}")
     public Response deletePerson(@PathParam("id") String id)
     {
-        f.deleteProject(new Long(id));
+        f.deletePerson(new Long(id));
         return Response.status(Response.Status.OK).build();
     }
 
