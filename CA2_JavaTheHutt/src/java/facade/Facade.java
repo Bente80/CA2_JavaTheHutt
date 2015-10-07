@@ -58,8 +58,9 @@ public class Facade {
         em.getTransaction().commit();
     }
     
-    public Person updatePerson(Person p){
+    public Person updatePerson(Long id){
         EntityManager em = getEntityManager();
+        Person p = em.find(Person.class, id);
         em.getTransaction().begin();
         em.refresh(p);
         em.getTransaction().commit();
