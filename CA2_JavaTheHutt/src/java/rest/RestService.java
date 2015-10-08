@@ -13,6 +13,7 @@ import com.oracle.jrockit.jfr.ContentType;
 import entity.Address;
 import entity.CityInfo;
 import entity.Phone;
+import exception.EntityNotFoundException;
 import facade.Facade;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -58,7 +59,7 @@ public class RestService
     @GET
     @Path("complete/{id}")
     @Produces("application/json")
-    public Response getPersonById(@PathParam("id") String id)
+    public Response getPersonById(@PathParam("id") String id) throws EntityNotFoundException
     {
         return Response.status(Response.Status.OK).entity(makePerson(f.getPersonById(new Long(id))).toString()).build();
     }
@@ -66,7 +67,7 @@ public class RestService
     @GET
     @Path("complete")
     @Produces("application/json")
-    public Response getAllPersons()
+    public Response getAllPersons() throws EntityNotFoundException
     {
         JsonArray out = new JsonArray();
         JsonObject jperson = new JsonObject();
@@ -84,7 +85,7 @@ public class RestService
     @GET
     @Path("contactinfo/{id}")
     @Produces("application/json")
-    public Response getOnePersonWithOnlyContactInfo(@PathParam("id") String id)
+    public Response getOnePersonWithOnlyContactInfo(@PathParam("id") String id) throws EntityNotFoundException
     {
         return Response.status(Response.Status.OK).entity(makePersonSimpleInfo(f.getPersonById(new Long(id))).toString()).build();
     }
@@ -92,7 +93,7 @@ public class RestService
     @GET
     @Path("contactinfo")
     @Produces("application/json")
-    public Response getAllPersonsWithOnlyContactInfo()
+    public Response getAllPersonsWithOnlyContactInfo() throws EntityNotFoundException
     {
         JsonArray out = new JsonArray();
         JsonObject jperson = new JsonObject();
@@ -125,16 +126,17 @@ public class RestService
     @Path("{id}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response EditAnExsistentPerson(@PathParam("id") String id, String data)
+    public Response EditAnExsistentPerson(@PathParam("id") String id, String data) throws EntityNotFoundException
     {
         JsonObject o = new JsonParser().parse(data).getAsJsonObject();
-        f.updatePerson(new Long(id),o.get("firstName").toString()); 
-        return Response.status(Response.Status.OK).entity(makePerson(f.getPersonById(new Long(id))).toString()).build(); 
+        Person p = f.updatePerson(new Long(id),o.get("firstName").toString());
+         
+        return Response.status(Response.Status.OK).entity(makePerson(p)).build(); 
     }
     
     @DELETE
     @Path("{id}")
-    public Response deletePerson(@PathParam("id") String id)
+    public Response deletePerson(@PathParam("id") String id) throws EntityNotFoundException
     {
         f.deletePerson(new Long(id));
         return Response.status(Response.Status.OK).build();

@@ -7,6 +7,7 @@ package test;
 
 import entity.CityInfo;
 import entity.Person;
+import exception.EntityNotFoundException;
 import facade.Facade;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -54,14 +55,14 @@ public class FacadeJUnitTest
     }
     
     @Test
-    public void getAllPersonsFromDatabaseTest()
+    public void getAllPersonsFromDatabaseTest() throws EntityNotFoundException
     {
         List<Person> p = f.getAllPersons();
         assertEquals(p.size(), 2);
     }
     
     @Test
-    public void getPersonById(){
+    public void getPersonById() throws EntityNotFoundException{
         List<Person> l = f.getPersonsByZipCode("3487");
         Person p = f.getPersonById(l.get(0).getId());
         assertEquals(p.getFirstName(), "Korben");
@@ -80,7 +81,7 @@ public class FacadeJUnitTest
     }
     
     @Test
-    public void getonePersonByPhone()
+    public void getonePersonByPhone() throws EntityNotFoundException
     {
         Person p = f.getPersonByPhone("33887590");
         assertEquals(p.getFirstName(), "Korben");    

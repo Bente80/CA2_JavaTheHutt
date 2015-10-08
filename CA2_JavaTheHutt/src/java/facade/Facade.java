@@ -67,7 +67,7 @@ public class Facade {
         }
     }
     
-    public void updatePerson(Long id, String firstName) throws EntityNotFoundException{
+    public Person updatePerson(Long id, String firstName) throws EntityNotFoundException{
         EntityManager em = getEntityManager();
         Person p = em.find(Person.class, id);
         if(p == null){
@@ -75,10 +75,11 @@ public class Facade {
         }else{
         p.setFirstName(firstName);
         em.getTransaction().begin();
-        em.refresh(p);
+        em.merge(p);
         em.getTransaction().commit();
+        Person pers = em.find(Person.class, id);
+        return pers;
         }
-
     }
 
     public Person getPersonByPhone(String number) throws EntityNotFoundException {

@@ -12,6 +12,7 @@ import entity.Company;
 import entity.Hobby;
 import entity.Person;
 import entity.Phone;
+import exception.EntityNotFoundException;
 import facade.Facade;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class CreateData
 //static List <Hobby> hobbies = new ArrayList();
 //static List <String> email = new ArrayList();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EntityNotFoundException {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
         Facade f = new Facade(emf);
