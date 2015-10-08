@@ -58,14 +58,15 @@ public class Facade {
         em.getTransaction().commit();
     }
     
-    public Person updatePerson(Long id){
+    public void updatePerson(Long id, String firstName){
         EntityManager em = getEntityManager();
         Person p = em.find(Person.class, id);
+        p.setFirstName(firstName);
         em.getTransaction().begin();
         em.refresh(p);
         em.getTransaction().commit();
-        Person updatedPerson = em.find(Person.class, id);
-        return updatedPerson;
+//        Person updatedPerson = em.find(Person.class, id);
+//        return updatedPerson;
     }
 
     public Person getPersonByPhone(String number) {
