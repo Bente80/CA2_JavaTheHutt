@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rest;
 
 import com.google.gson.FieldNamingPolicy;
@@ -14,6 +9,9 @@ import com.google.gson.JsonObject;
 import entity.Person;
 import javax.ws.rs.core.Context;
 import com.google.gson.JsonParser;
+import com.oracle.jrockit.jfr.ContentType;
+import entity.Address;
+import entity.CityInfo;
 import entity.Phone;
 import facade.Facade;
 import java.util.List;
@@ -49,9 +47,6 @@ public class RestService
     Facade f;
     Gson gson;
 
-    /**
-     * Creates a new instance of RestService
-     */
     public RestService()
     {
         emf = Persistence.createEntityManagerFactory("PU");
@@ -115,27 +110,25 @@ public class RestService
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response createAPerson(String person)
+    public Response createAPerson(String data)
     {
-        Person p = gson.fromJson(person, Person.class);
+        JsonObject o = new JsonParser().parse(data).getAsJsonObject();
+        CityInfo c = new CityInfo(o.get("city").toString(),o.get("zipCode").toString());
+        Address a = new Address(o.get("street").toString(), o.get("additionalInfo").toString(),c);
+        Person p = new Person(o.get("firstName").toString(), o.get("lastName").toString(), o.get("email").toString(), a);
+
         f.savePerson(p);
         return Response.status(Response.Status.CREATED).type(MediaType.APPLICATION_JSON).entity(gson.toJson(p)).build();
     }
 
-    /**
-     * PUT method for updating or creating an instance of RestService
-     *
-     * @param content representation for the resource
-     * @return an HTTP response with content of the updated or created resource.
-     */
-    
     @PUT
     @Path("{id}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response EditAnExsistentPerson(@PathParam("id") String id)
+    public Response EditAnExsistentPerson(@PathParam("id") String id, String data)
     {
-      f.updatePerson(new Long(id)); 
+        JsonObject o = new JsonParser().parse(data).getAsJsonObject();
+        f.updatePerson(new Long(id),o.get("firstName").toString()); 
         return Response.status(Response.Status.OK).entity(makePerson(f.getPersonById(new Long(id))).toString()).build(); 
     }
     

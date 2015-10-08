@@ -70,4 +70,9 @@ public class Person extends InfoEntity
     public void addHobby(Hobby h){
         this.hobbyList.add(h);
     }
+    
+//    public void addAddress(Address a){
+//        this.getAddress().setStreet(a.getStreet());
+//    }
+    
 }

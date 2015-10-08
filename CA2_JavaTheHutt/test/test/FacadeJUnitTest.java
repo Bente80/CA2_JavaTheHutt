@@ -25,22 +25,32 @@ import sql.CreateData;
 
 public class FacadeJUnitTest
 {
+        
+        EntityManagerFactory emf;
+        Facade f; 
+        EntityManager em;
        
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
-        Facade f = new Facade(emf); 
-        EntityManager em = emf.createEntityManager();
-        
-        
 
     public FacadeJUnitTest()
     {
-        CreateData.testData(em);
-        
+       emf = Persistence.createEntityManagerFactory("PU");
+        f = new Facade(emf); 
+        em = emf.createEntityManager(); 
     }
     
     @BeforeClass
     public static void setUp(){
+       EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PU");
+        EntityManager em2 = emf2.createEntityManager(); 
+        //CreateData.testData(em2);
+    }
+    
+    
+    @Before
+    public void setUpbeforeeachtest(){
+        emf = Persistence.createEntityManagerFactory("PU");
+        f = new Facade(emf); 
+        em = emf.createEntityManager();
     }
     
     @Test
@@ -52,7 +62,8 @@ public class FacadeJUnitTest
     
     @Test
     public void getPersonById(){
-        Person p = f.getPersonById(3L);
+        List<Person> l = f.getPersonsByZipCode("3487");
+        Person p = f.getPersonById(l.get(0).getId());
         assertEquals(p.getFirstName(), "Korben");
     }
     
@@ -72,8 +83,7 @@ public class FacadeJUnitTest
     public void getonePersonByPhone()
     {
         Person p = f.getPersonByPhone("33887590");
-        assertEquals(p.getFirstName(), "Korben");
-        
+        assertEquals(p.getFirstName(), "Korben");    
     }
     
     @Test
