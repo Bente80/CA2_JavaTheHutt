@@ -16,13 +16,24 @@
     </head>
     <body>
         <h1>Welcome to Java The Hutt!</h1>
-        <div id="authors"> Mikkel Vig, Steffen Juhl Madsen, Bente Andersen</div>
-        <div id="class">A Class Computer Sience</div>
-        <div id= "group"> 1 </div>
+        <div id="authors" style="color: blue;"> Mikkel Vig, Steffen Juhl Madsen, Bente Andersen</div>
+        <div id="class" style="color: blue;">A Class Computer Sience</div>
+        <div id= "group" style="color: blue;"> 1 </div>
         <div>
-            <input id="personInput" style=" width:60em; margin-top:1em;">
             <br>
-            <button id="getoneperson">Get one person</button>
+            <br>
+            <input id="personId" style=" width:10em; margin-top:1em;">
+            <input id="personOutput" style="width:60em; margin-top:1em;">
+            <br>
+            <br>
+            <button id="getAllInfo">Get one person complete info</button>
+            <button id="get">Get one person</button>
+            <button id="create">Create a person</button>
+            <button id="change">Change a person</button>
+            <button id="delete">Delete a person</button>
+            <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top: 1em;"></div>
+            <br>
+            <br>
         </div>
     </body>
 </html>

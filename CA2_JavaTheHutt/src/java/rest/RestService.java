@@ -12,6 +12,7 @@ import com.google.gson.JsonParser;
 import com.oracle.jrockit.jfr.ContentType;
 import entity.Address;
 import entity.CityInfo;
+import entity.Hobby;
 import entity.Phone;
 import exception.EntityNotFoundException;
 import facade.Facade;
@@ -155,6 +156,17 @@ public class RestService
         jo.addProperty("additionalInfo", person.getAddress().getAdditionalInfo());
         jo.addProperty("zipCode", person.getAddress().getCityInfo().getZip());
         jo.addProperty("city", person.getAddress().getCityInfo().getCity());
+        
+        JsonArray Jpershobby = new JsonArray();
+        JsonObject hobbyObject;
+        for (Hobby hobby : person.getHobbyList()){
+        hobbyObject = new JsonObject();
+        hobbyObject.addProperty("name", hobby.getName());
+        hobbyObject.addProperty("description",hobby.getDescription());
+        Jpershobby.add(hobbyObject);
+        }
+        jo.add("Hobbies", Jpershobby);
+        
         JsonArray JpersTlf = new JsonArray();
         JsonObject pers;
         for (Phone phone : person.getPhoneList())
@@ -165,6 +177,7 @@ public class RestService
             JpersTlf.add(pers);
         }
         jo.add("PersonTlf", JpersTlf);
+        
         return jo;
     }
 

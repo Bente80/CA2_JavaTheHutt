@@ -29,6 +29,7 @@ public class Person extends InfoEntity
   @ManyToMany(cascade={CascadeType.ALL})
   private List <Hobby> hobbyList = new ArrayList();
 
+
     public Person()
     {
     }
@@ -66,6 +67,10 @@ public class Person extends InfoEntity
     {
         this.lastName = lastName;
     } 
+    public List<Hobby> getHobbyList()
+    {
+        return hobbyList;
+    }
     
     public void addHobby(Hobby h){
         this.hobbyList.add(h);
