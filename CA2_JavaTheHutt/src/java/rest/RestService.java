@@ -129,9 +129,10 @@ public class RestService
     public Response EditAnExsistentPerson(@PathParam("id") String id, String data) throws EntityNotFoundException
     {
         JsonObject o = new JsonParser().parse(data).getAsJsonObject();
-        Person p = f.updatePerson(new Long(id),o.get("firstName").toString());
+        String firstname = o.get("firstName").toString();
+        Person p = f.updatePerson(new Long(id),firstname);
          
-        return Response.status(Response.Status.OK).entity(makePerson(p)).build(); 
+        return Response.status(Response.Status.OK).type(MediaType.APPLICATION_JSON).entity(gson.toJson(makePerson(p))).build(); 
     }
     
     @DELETE
