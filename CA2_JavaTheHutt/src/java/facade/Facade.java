@@ -9,6 +9,7 @@ import entity.CityInfo;
 import entity.Company;
 import entity.Person;
 import entity.Phone;
+import exception.EntityNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,7 +31,7 @@ public class Facade {
         return emf.createEntityManager();
     }
 
-    public Person getPersonById(Long id) {
+    public Person getPersonById(Long id) throws EntityNotFoundException {
         EntityManager em = getEntityManager();
         Person p;
         try {
@@ -40,6 +41,9 @@ public class Facade {
         } finally {
             em.close();
         }
+        if(p == null){
+            throw new EntityNotFoundException("No person found with requested Id");
+        }else
         return p;
     }
 
@@ -51,30 +55,41 @@ public class Facade {
         return p;
     }
 
-    public void deletePerson(Long id) {
+    public void deletePerson(Long id) throws EntityNotFoundException {
         EntityManager em = getEntityManager();
+        Person p = em.find(Person.class, id);
+        if(p == null){
+            throw new EntityNotFoundException("No person found with requested Id");
+        }else{
         em.getTransaction().begin();
         em.remove(em.find(Person.class, id));
         em.getTransaction().commit();
+        }
     }
     
-    public void updatePerson(Long id, String firstName){
+    public void updatePerson(Long id, String firstName) throws EntityNotFoundException{
         EntityManager em = getEntityManager();
         Person p = em.find(Person.class, id);
+        if(p == null){
+            throw new EntityNotFoundException("No person found with requested Id");
+        }else{
         p.setFirstName(firstName);
         em.getTransaction().begin();
         em.refresh(p);
         em.getTransaction().commit();
-//        Person updatedPerson = em.find(Person.class, id);
-//        return updatedPerson;
+        }
+
     }
 
-    public Person getPersonByPhone(String number) {
+    public Person getPersonByPhone(String number) throws EntityNotFoundException {
         EntityManager em = getEntityManager();
         Person person;
         try {
 
             Phone p = em.find(Phone.class, number);
+            if(p == null){
+            throw new EntityNotFoundException("No person found with requested phonenumber");
+            }
             person = em.find(Person.class, p.getInfoEntity().getId());
 
         } finally {
@@ -83,7 +98,7 @@ public class Facade {
         return person;
     }
 
-    public List<Person> getAllPersons() {
+    public List<Person> getAllPersons() throws EntityNotFoundException {
         EntityManager em = getEntityManager();
         List<Person> personList;
         try {
@@ -97,6 +112,9 @@ public class Facade {
             Person p = personList.get(i);
             personList.set(i, p);
         }
+        if(personList.isEmpty()){
+            throw new EntityNotFoundException("No persons in database");
+        }else
 
         return personList;
     }
