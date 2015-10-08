@@ -114,9 +114,9 @@ public class RestService
     public Response createAPerson(String data)
     {
         JsonObject o = new JsonParser().parse(data).getAsJsonObject();
-        CityInfo c = new CityInfo(o.get("city").toString(),o.get("zipCode").toString());
-        Address a = new Address(o.get("street").toString(), o.get("additionalInfo").toString(),c);
-        Person p = new Person(o.get("firstName").toString(), o.get("lastName").toString(), o.get("email").toString(), a);
+        CityInfo c = new CityInfo(o.get("city").getAsString(),o.get("zipCode").getAsString());
+        Address a = new Address(o.get("street").getAsString(), o.get("additionalInfo").getAsString(),c);
+        Person p = new Person(o.get("firstName").getAsString(), o.get("lastName").getAsString(), o.get("email").getAsString(), a);
 
         f.savePerson(p);
         return Response.status(Response.Status.CREATED).type(MediaType.APPLICATION_JSON).entity(gson.toJson(p)).build();
@@ -129,7 +129,9 @@ public class RestService
     public Response EditAnExsistentPerson(@PathParam("id") String id, String data) throws EntityNotFoundException
     {
         JsonObject o = new JsonParser().parse(data).getAsJsonObject();
-        String firstname = o.get("firstName").toString();
+        System.out.println("data"+data);
+        String firstname = o.get("firstName").getAsString();
+        System.out.println("jgildjl"+firstname);
         Person p = f.updatePerson(new Long(id),firstname);
          
         return Response.status(Response.Status.OK).type(MediaType.APPLICATION_JSON).entity(gson.toJson(makePerson(p))).build(); 

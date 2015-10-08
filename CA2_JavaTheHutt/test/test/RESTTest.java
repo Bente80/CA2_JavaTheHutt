@@ -11,6 +11,7 @@ import static com.jayway.restassured.RestAssured.defaultParser;
 import static com.jayway.restassured.RestAssured.when;
 import com.jayway.restassured.parsing.Parser;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isA;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
@@ -35,7 +36,7 @@ public class RESTTest
     }
 
     @Test
-    public void getOnePersonFromDataBaseComplete()
+    public void getOnePersonFromDataBaseCompleteStreet()
     {
         when()
                 .get("/api/person/complete/4")
@@ -44,17 +45,44 @@ public class RESTTest
                 .body("street", equalTo("Torbenvej"));
     }
 
+    @Test
+    public void getOnePersonFromDataBaseCompleteadditionalInfo()
+    {
+        when()
+                .get("/api/person/complete/4")
+                .then()
+                .statusCode(200)
+                .body("additionalInfo", equalTo("34, 2.tv"));
+    }
+    
+    @Test
+    public void getOnePersonFromDataBaseCompleteCity()
+    {
+        when()
+                .get("/api/person/complete/4")
+                .then()
+                .statusCode(200)
+                .body("city", equalTo("Bullerby"));
+    }
 //    @Test
 //    public void getAllPersonsFromDataBase(){
+//        int i = when()
+//                .get("api/person/complete")
+//                .then()
+//                .statusCode(200)
+//                .
+////                .body("street"), equalTo(basePath) .size
+//                ;
+//    }
+//     @Test
+//    public void getAllPersonsFromDataBaseComplete(){
 //        when()
 //                .get("api/person/complete")
 //                .then()
 //                .statusCode(200)
-//                .body(getAllPersonsFromDataBase(), null)
-////                .body("street"), equalTo(basePath) .size
-//                ;
+//                .body("firstName", isA(String.class));
 //    }
-    
+//    
     @Test
     public void getOnePersonFromDataBaseContactinfo()
     {
@@ -81,5 +109,10 @@ public class RESTTest
                 .get("/api/personoooongdjlsgndsl")
                 .then()
                 .statusCode(404);
+    }
+    @Test
+    public void putPostDelete(){
+    
+    
     }
 }
