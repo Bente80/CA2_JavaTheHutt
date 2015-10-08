@@ -35,7 +35,7 @@ public class CreateData
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
         Facade f = new Facade(emf);
         EntityManager em = emf.createEntityManager();
-        CreateData.testData(em);
+//        CreateData.testData(em);
         
         Person p = f.getPersonById(3L);
         System.out.println(p.getFirstName());
