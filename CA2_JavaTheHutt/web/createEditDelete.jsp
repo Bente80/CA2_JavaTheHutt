@@ -13,7 +13,7 @@
         <script src ="javaScript.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -34,12 +34,16 @@
             <input id="personLName" type="text" placeholder="Enter Lastname" style=" width:10em; margin-top:1em;">
             <input id="personEmail" type="text" placeholder="Enter Email" style=" width:10em; margin-top:1em;">
             <input id="personStreet" type="text" placeholder="Enter Street" style=" width:10em; margin-top:1em;">
+            <input id="personAdditionalInfo" type="text" placeholder="Enter Additional Info" style=" width:10em; margin-top:1em;">
             <input id="personZipCode" type="text" placeholder="Enter Zip code" style=" width:10em; margin-top:1em;">
-            <input id="City" type="text" placeholder="Enter City" style=" width:10em; margin-top:1em;">
+            <input id="personCity" type="text" placeholder="Enter City" style=" width:10em; margin-top:1em;">
+        </div><br><br><div>
             <button id="create">Create a person</button>
             <button id="change">Change a person</button>
             <button id="delete">Delete a person</button>
-        </div>
-            <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top: 1em;"></div>
+        </div><br><br><div>
+            <input id="Output" style="width:60em; margin-top:1em;">
+        </div><br><br>
+        <div id="error" class="alert alert-danger" role="alert" style="width: 50%;margin-top: 1em;"></div>
     </body>
 </html>
