@@ -64,25 +64,15 @@ public class RESTTest
                 .statusCode(200)
                 .body("city", equalTo("Bullerby"));
     }
-//    @Test
-//    public void getAllPersonsFromDataBase(){
-//        int i = when()
-//                .get("api/person/complete")
-//                .then()
-//                .statusCode(200)
-//                .
-////                .body("street"), equalTo(basePath) .size
-//                ;
-//    }
-//     @Test
-//    public void getAllPersonsFromDataBaseComplete(){
-//        when()
-//                .get("api/person/complete")
-//                .then()
-//                .statusCode(200)
-//                .body("firstName", isA(String.class));
-//    }
-//    
+    @Test
+    public void getAllPersonsFromDataBase(){
+        when()
+                .get("api/person/complete")
+                .then()
+                .statusCode(200)
+                .body("size()", equalTo(2));
+    }
+   
     @Test
     public void getOnePersonFromDataBaseContactinfo()
     {
