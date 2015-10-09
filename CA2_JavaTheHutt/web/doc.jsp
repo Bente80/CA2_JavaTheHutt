@@ -21,7 +21,7 @@
         </div>
         <ul class="nav nav-tabs">
             <li><a href="index.jsp">Index</a></li>
-            <li><a href="createEditDelete.jsp">Create, edit or delete</a></li>
+            <li><a href="createEditDelete.jsp">Create, edit ore delete</a></li>
             <li><a href="tut.jsp">Tutorial</a></li>
         </ul>
         <h1>Documentation</h1>

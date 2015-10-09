@@ -49,21 +49,16 @@ $(document).ready(function () {
     
     $("#create").click(function () {
         $("#error").hide();
-        var p = JSON.stringify({firstName: $("#personFName").val(),lastName: $("#personLName").val(),email: $("#personEmail").val()
-            , street: $("#personStreet").val, additionalInfo: $("#personAdditionalInfo").val, zipCode: $("#personZipCode").val
-        , city: $("#personCity").val});
+        var p = JSON.stringify({firstName: $("#personFName").val(),lastName: $("#personLName").val(),email: $("#personemail").val()});
 
         $.ajax({
-            url: "api/person/",
+            url: "api/quote/",
             type: "POST",
             data: p,
             contentType: "application/json",
             dataType: "json"
-            
         }).done(function (dataFromServer) { //called when ready
-            var perso = dataFromServer.firstName + ", " + dataFromServer.lastName + ", " + dataFromServer.email + ", " + dataFromServer.street + ", "
-                    + dataFromServer.additionalInfo + ", " + dataFromServer.zipCode + ", " + dataFromServer.city;
-            $("#Output").val(perso);
+            $("#thequote").val(dataFromServer.quote);
         }).fail(function (error) {
             var json = error.responseJSON;
             $("#error").show().html(json.Message);

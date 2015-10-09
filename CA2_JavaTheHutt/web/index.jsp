@@ -25,14 +25,14 @@
             <a class="navbar-brand" href="#">Index</a>
         </div>
         <ul class="nav nav-tabs">
-            <li><a href="createEditDelete.jsp">Create, edit or delete</a></li>
+            <li><a href="createEditDelete.jsp">Create, edit ore delete</a></li>
             <li><a href="doc.jsp">Documentation</a></li>
             <li><a href="tut.jsp">Tutorial</a></li>
         </ul>
 
         <h1>Welcome to Java The Hutt!</h1>
         <div id="authors" style="color: blue;"> Mikkel Vig, Steffen Juhl Madsen, Bente Andersen</div>
-        <div id="class" style="color: blue;">A Class Computer Science</div>
+        <div id="class" style="color: blue;">A Class Computer Sience</div>
         <div id= "group" style="color: blue;"> 1 </div>
         <div>
             <input id="personId" style=" width:10em; margin-top:1em;">
