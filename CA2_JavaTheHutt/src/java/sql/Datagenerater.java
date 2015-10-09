@@ -5,6 +5,7 @@
  */
 package sql;
 
+import deploy.DeploymentConfiguration;
 import entity.Address;
 import entity.CityInfo;
 import entity.Hobby;
@@ -25,7 +26,7 @@ import javax.persistence.Persistence;
  * @author Bente
  */
 public class Datagenerater {
-
+    
     private static EntityManagerFactory emf;
    
     private static Hobby hb;
@@ -52,7 +53,7 @@ public class Datagenerater {
         
         
         
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         

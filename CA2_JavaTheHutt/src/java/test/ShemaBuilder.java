@@ -5,6 +5,7 @@
  */
 package test;
 
+import deploy.DeploymentConfiguration;
 import javax.persistence.Persistence;
 
 /**
@@ -16,5 +17,6 @@ public class ShemaBuilder
     public static void main(String[] args)
     {
         Persistence.generateSchema("PU", null);
+       
     }
 }
