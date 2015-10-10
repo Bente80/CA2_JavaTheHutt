@@ -46,55 +46,71 @@ $(document).ready(function () {
         <td>" + person.street + "</td><td>" + person.additionalInfo + "</td><td>" + person.zipCode + "</td><td>" + person.city + "</td></tr>";
         return row;
     }
-    
+// Create a person (POST).  
     $("#create").click(function () {
-        $("#error").hide();
-        var p = JSON.stringify({firstName: $("#personFName").val(),lastName: $("#personLName").val(),email: $("#personemail").val()});
+    $("#error").hide();
+    $("#OutputCreate").val("");
+    
+        var perso = JSON.stringify({firstName: $("#personFName").val(), lastName: $("#personLName").val(), email: $("#personEmail").val(), 
+         street: $("#personStreet").val(), additionalInfo: $("#personAdditionalInfo").val(), 
+         zipCode: $("#personZipCode").val(), city: $("#personCity").val()});
 
         $.ajax({
-            url: "api/quote/",
+            url: "api/person/",
             type: "POST",
+            data: perso,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+       }).done(function (dataFromServer) { // (datafromServer)
+            $("#personFName").val(""); $("#personLName").val(""); $("#personEmail").val(""); $("#personStreet").val("");
+            $("#personAdditionalInfo").val(""); $("#personZipCode").val(""); $("#personCity").val("");  
+            $("#OutputCreate").val(perso);
+        }).fail(function (error) {
+            var json = error.responseJSON;
+            $("#error").show().html(json.Message);
+        }); 
+    });
+
+// Edit name on a person (PUT).
+$("#edit").click(function () {
+        $("#error").hide();
+        $("#OutputEdit").val("");
+        var p = JSON.stringify({firstName: $("#firstname").val()});
+
+        $.ajax({
+            url: "api/person/" + $("#nr").val(),
+            type: "PUT",
             data: p,
-            contentType: "application/json",
+            contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function (dataFromServer) { //called when ready
-            $("#thequote").val(dataFromServer.quote);
+            var p = dataFromServer.firstName + ", " + dataFromServer.lastName + ", " + dataFromServer.email + ", " + dataFromServer.street + ", "
+                    + dataFromServer.additionalInfo + ", " + dataFromServer.zipCode + ", " + dataFromServer.city;
+            $("#firstname").val(""); $("#nr").val("");
+            $("#OutputEdit").val(p);
         }).fail(function (error) {
             var json = error.responseJSON;
             $("#error").show().html(json.Message);
         });
-
     });
-
-//// Create and save a person (POST)
-//      function savePerson() {
-//        var type = "POST";
-//        var data = {fName: $("#fname").val(), lName: $("#lname").val(), phone: $("#phone").val()};
-////        if (!isAdding()) {
-////          type = "PUT";
-////          data.id = $("#id").val();
-////        }
-//        $.ajax({
-//          url: "api/person",
-//          type: type,
-//          contentType: "application/json; charset=utf-8",
-//          dataType: "json",
-//          data: JSON.stringify(data)
-//        }).done(function (added) {
-//          initAddEditFields("", "", "", null);
-//          if (isAdding()) {
-//            $("#tbody").append(makeRow(added));
-//          }
-//          else {
-//            $("#" + data.id).replaceWith(makeRow(added));
-//          }
-//          setUpHandlers();
-//          setIsAdding(true);
-//        }).fail(function (jqXHR, textStatus, errorThrown) {
-//          $("#error").html(textStatus + ", " + errorThrown).show();
-//          setIsAdding(true);
-//        });
-//      }
-      
+    
+// Delete a person(DELETE)
+$("#delete").click(function () {
+        $("#error").hide();
+        $("#OutputDelete").val("");
+        $.ajax({
+            url: "api/person/" + $("#deleteNr").val(),
+            type: "DELETE",
+            dataType: "json"
+        }).done(function (dataFromServer) { //called when ready
+            var p = dataFromServer.firstName + ", " + dataFromServer.lastName + ", " + dataFromServer.email + ", " + dataFromServer.street + ", "
+                    + dataFromServer.additionalInfo + ", " + dataFromServer.zipCode + ", " + dataFromServer.city;
+            $("#deleteNr").val("");
+            $("#OutputDelete").val(p);
+        }).fail(function (error) {
+            var json = error.responseJSON;
+            $("#error").show().html(json.Message);
+        });
+    });
 });
 
