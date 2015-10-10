@@ -25,14 +25,13 @@
         </ul>
 
         <h1>Tutorial</h1><br>
-        <h4>Komplet beskrivelse af Rest-API, fejlbeskeder og JSON-format:</h4>
         <br>
         <pre>
+        <h4><b>Komplet beskrivelse af Rest-API, fejlbeskeder og JSON-format:</b></h4>
 Vi har lavet et Rest-API, som giver brugere mulighed for at hente informationer om personer fra en database. 
 Man har derudover mulighed for at tilføje nye personer, samt ændre, og slette eksisterende personer i databasen. 
 
 <p><b>Oversigt over metoderne i vores Rest-API med type, navn og formål:</b></p>
-
 GET – getPersonById() - Henter én person med et specifikt Id
 GET – getAllPersons() - Henter alle personer
 GET – getOnePersonWithOnlyContactInfo() - Henter én person kun med kontaktinfo
