@@ -10,6 +10,7 @@ import entity.Person;
 import javax.ws.rs.core.Context;
 import com.google.gson.JsonParser;
 import com.oracle.jrockit.jfr.ContentType;
+import deploy.DeploymentConfiguration;
 import entity.Address;
 import entity.CityInfo;
 import entity.Hobby;
@@ -51,7 +52,7 @@ public class RestService
 
     public RestService()
     {
-        emf = Persistence.createEntityManagerFactory("PU");
+        emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         em = emf.createEntityManager();
         f = new Facade(emf);
         gson = new GsonBuilder().setPrettyPrinting().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).create();

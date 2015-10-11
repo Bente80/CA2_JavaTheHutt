@@ -354,56 +354,11 @@ public class Datagenerater {
             em.flush();
 
         }
-//        int count10 = 0;
-//        for (int i = 0; i < 14; i++) {
-//        
-//          String hobyprimkey = hobby.get(count10);
-//          Hobby hobbynr = em.find(Hobby.class, hobyprimkey);
-//          
-//         
-//          hobbynr.getName();
-//            System.out.println("" + hobbynr.getName());
-//
-//          count10++;
-//
-//        }
              
-             
-//        int count5 = 0;
-//        for (int i = 0; i < 15; i++) {
-//            String phonenr = phone.get(count5);
-//            String addphoneinfo = additionalInfo.get(count5);
-//
-//            e = new Phone(phonenr, addphoneinfo);
-//
-//            count5++;
-//            em.persist(e);
-//
-//        }
+            
 
         em.persist(c);
         em.getTransaction().commit();
     }
 
-
-//    public int counter(){
-//        
-//        
-//        Random rd = new Random();
-//        int nextvalue = rd.nextInt(15);
-//
-//        return nextvalue;
-//
-//        }
-//    
-//    
-//    public int antalafhobby(int i){
-//    
-//        Random rnd = new Random();
-//        int nexthobbyvalue = rnd.nextInt(15);
-//       
-//        
-//        
-//        return nexthobbyvalue;
-//    }
 }

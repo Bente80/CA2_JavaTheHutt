@@ -7,6 +7,7 @@ package test;
 
 import deploy.DeploymentConfiguration;
 import javax.persistence.Persistence;
+import sql.Datagenerater;
 
 /**
  *
@@ -16,7 +17,8 @@ public class ShemaBuilder
 {
     public static void main(String[] args)
     {
-        Persistence.generateSchema("PU", null);
-       
+        Persistence.generateSchema(DeploymentConfiguration.PU_NAME, null);
+      
+        
     }
 }

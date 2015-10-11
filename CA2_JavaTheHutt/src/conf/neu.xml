@@ -15,6 +15,7 @@
       <property name="javax.persistence.jdbc.user" value="cph-sm182"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="cph99919"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
       <property name="javax.persistence.sql-load-script-source" value="sql/addData.sql"/>
     </properties>
   </persistence-unit>
