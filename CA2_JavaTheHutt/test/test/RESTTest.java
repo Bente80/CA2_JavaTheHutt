@@ -30,39 +30,39 @@ public class RESTTest
     @BeforeClass
     public static void setUpBeforeClass() throws Exception
     {
-        baseURI = "http://localhost:8080";
+        baseURI = "http://ca2javathehutt-smcphbusiness.rhcloud.com";
         defaultParser = Parser.JSON;
-        basePath = "/CA2_JavaTheHutt";
+        basePath = "/ca2";
     }
 
     @Test
     public void getOnePersonFromDataBaseCompleteStreet()
     {
         when()
-                .get("/api/person/complete/4")
+                .get("/api/person/complete/25")
                 .then()
                 .statusCode(200)
-                .body("street", equalTo("Torbenvej"));
+                .body("street", equalTo("Katastrofevej"));
     }
 
     @Test
     public void getOnePersonFromDataBaseCompleteadditionalInfo()
     {
         when()
-                .get("/api/person/complete/4")
+                .get("/api/person/complete/40")
                 .then()
                 .statusCode(200)
-                .body("additionalInfo", equalTo("34, 2.tv"));
+                .body("additionalInfo", equalTo("40"));
     }
     
     @Test
     public void getOnePersonFromDataBaseCompleteCity()
     {
         when()
-                .get("/api/person/complete/4")
+                .get("/api/person/complete/59")
                 .then()
                 .statusCode(200)
-                .body("city", equalTo("Bullerby"));
+                .body("city", equalTo("Praestoe"));
     }
     @Test
     public void getAllPersonsFromDataBase(){
@@ -70,17 +70,17 @@ public class RESTTest
                 .get("api/person/complete")
                 .then()
                 .statusCode(200)
-                .body("size()", equalTo(2));
+                .body("size()", equalTo(59));
     }
    
     @Test
     public void getOnePersonFromDataBaseContactinfo()
     {
         when()
-                .get("/api/person/contactinfo/3")
+                .get("/api/person/contactinfo/2")
                 .then()
                 .statusCode(200)
-                .body("firstName", equalTo("Sille"));
+                .body("firstName", equalTo("Jabba"));
     }
 
     @Test
@@ -100,6 +100,7 @@ public class RESTTest
                 .then()
                 .statusCode(404);
     }
+    
     @Test
     public void putPostDelete(){
     
