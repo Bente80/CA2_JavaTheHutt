@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sql;
 
 
@@ -21,16 +16,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
  * @author Bente
  */
 public class CreateData
 {
-//static List <String> firstname = new ArrayList();
-//static List <String> lastname = new ArrayList();
-//static List <Hobby> hobbies = new ArrayList();
-//static List <String> email = new ArrayList();
-
     public static void main(String[] args) throws EntityNotFoundException {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
@@ -56,34 +45,9 @@ public class CreateData
         System.out.println(personsByCity.get(0).getFirstName());
 
         Person scooby = f.getPersonByPhone("33887590");
-        System.out.println(scooby.getFirstName());
-    
-//        firstname.add("Hans");firstname.add("Peter");firstname.add("Grete");firstname.add("Erik");
-//        firstname.add("Lars");firstname.add("Sofus");firstname.add("Bubber");firstname.add("Nikita");
-//        
-//        lastname.add("Bubbersen");lastname.add("Madsen");lastname.add("Hansen");lastname.add("Andersen");
-//        lastname.add("Flumprahsen");lastname.add("McWilliams");lastname.add("Fett");lastname.add("Kabutops");
-//        
-//        Hobby h1 = new Hobby("Karate","Kampsport");hobbies.add(h1);
-//        Hobby h2 = new Hobby("Mountainbike","Udendørsaktivitet");hobbies.add(h2);
-//        Hobby h3 = new Hobby("Dans","Skide svært");hobbies.add(h3);
-//        Hobby h4 = new Hobby("Programmering","Sjovt, til tider...");hobbies.add(h4);
-//        Hobby h5 = new Hobby("Trommer","Meget højt...");hobbies.add(h5);
-//        
-//        
-//        email.add("scooby@hotmail.com");email.add("deathstar@hotmail.com");email.add("cirkus@hotmail.com");email.add("javathehutt@hotmail.com");
-//        email.add("bongobob@hotmail.com");email.add("threesome@hotmail.com");email.add("yogibear@hotmail.com");email.add("pooh@hotmail.com");
-//      
-    
+        System.out.println(scooby.getFirstName());    
     }
         public static void testData(EntityManager em){
-            
-//            em.createQuery("DELETE FROM CityInfo").executeUpdate();
-//            em.createQuery("DELETE FROM Address").executeUpdate();
-//            em.createQuery("DELETE FROM Hobby").executeUpdate();
-//            em.createQuery("DELETE FROM Phone").executeUpdate();
-//            em.createQuery("DELETE FROM Person").executeUpdate();
-//            em.createQuery("DELETE FROM Company").executeUpdate();
             
         CityInfo c = new CityInfo("3487","Bullerby");
         CityInfo c2 = new CityInfo("2720","Oenskebyen");
@@ -126,18 +90,13 @@ public class CreateData
         person.addHobby(h5);
         person.addHobby(h4);
         person2.addHobby(h4);
-////////////        h6.addPerson(person);
-        
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PU");
-//        EntityManager em = emf.createEntityManager();
-        
+
         em.getTransaction().begin();
         em.persist(person);
         em.persist(person2);
         em.persist(company);
         em.persist(company2);
         em.getTransaction().commit();
-//        em.close();
-               
+//        em.close();               
     }
 }
