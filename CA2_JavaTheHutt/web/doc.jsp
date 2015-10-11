@@ -27,6 +27,8 @@
         </ul>
         <h1>Documentation</h1><br>
         <br>
+        <a href="https://github.com/Bente80/CA2_JavaTheHutt.git"><h4><b>Link til GitHub repository</b></h4></a>
+        <br>
         <pre>
         <h4><b>CA 2 - Object Relational Mapping, REST, Test, Ajax and JQuery</b></h4>
         <h4><b>Bente Andersen, Steffen Juhl Madsen & Mikkel Vig</b></h4>
@@ -93,7 +95,7 @@ Vælg GET, indsæt URL'en: http://ca2javathehutt-smcphbusiness.rhcloud.com/ca2/a
 <b>Opret ny person:</b>
 Vælg POST, indsæt URL'en:  http://ca2javathehutt-smcphbusiness.rhcloud.com/ca2/api/person
 Vælg ”Body”, tryk på ”raw” og vælg JSON(application/json).
-Brug derefter følgende format, og erstat data med egne informationer:
+Brug derefter følgende format, og erstat data med egne informationer, alle felter skal udfyldes:
 {
   "firstName": "data",
   "lastName": "data",
@@ -124,7 +126,10 @@ blive vist i en tabel på siden.
 
 Man kan fra forsiden navigere videre til ”Create, edit or delete” med den øverste menubar. Her har man, som navnet indikerer, 
 mulighed for at tilføje, ændre og slette personer i databasen. 
-Vil man benytte disse funktioner, er et login påkrævet. Brug ”<b>test</b>” til både brugernavn og password, for at logge ind. 
+
+Vi forsøgte at implementere security til denne del. Man kunne dog ikke benytte create, edit eller delete, selv hvis man 
+var logget ind, så vi besluttede os for at fjerne det igen. Vi gjorde præcis det samme, som i en tidligere opgave, 
+men uden held.  
         </pre>
         
         

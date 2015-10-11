@@ -66,6 +66,18 @@ Denne metode bruger et Id fra URL'en, og returnerer personen med dette Id i data
 Følgende URL vil returnere person nr 1:
 http://ca2javathehutt-smcphbusiness.rhcloud.com/ca2/api/person/complete/1
 
+JSON-formatet ser ud på følgende måde:
+{
+ "firstName": "xxx",
+ "lastName" : "xxx",
+ "email" : "xxx",
+ "phones": [{"number":"xxx","description":"xxx"},{"number":"xxx","description":"xxx"},..]
+ "street": "xxx",
+ "additionalInfo" : "xxx",
+ "zipcode": "nnn",
+ "city" : "xxx"
+}
+
 <b>getAllPersons()</b>
 Denne metode henter alle personer i databasen, laver dem til JSON-objekter, lægger dem ind i et JSON-array, 
 og returnerer dette. Følgende URL bruges:
@@ -75,6 +87,14 @@ http://ca2javathehutt-smcphbusiness.rhcloud.com/ca2/api/person/complete
 Erstatter man ”complete” med ”contactinfo” i URL'en, sker der det samme som ved getPersonById, 
 bortset fra at det kun er fornavn, efternavn, email og telefonnumre der returneres. Eksempel på URL:  
 http://ca2javathehutt-smcphbusiness.rhcloud.com/ca2/api/person/contactinfo/1
+
+Her ser JSON-formatet således ud:
+{
+"id":nnn,
+"name": "xxx",
+"email":"xxx",
+"phones": [{"number":"xxx","description":"xxx"},{"number":"xxx","description":"xxx"},..]
+}
 
 <b>getAllPersonsWithOnlyContactInfo()</b>
 Gør det samme som getAllPersons(), men med samme information som ovenstående. 
