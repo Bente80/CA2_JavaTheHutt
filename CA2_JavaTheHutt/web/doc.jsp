@@ -130,6 +130,14 @@ mulighed for at tilføje, ændre og slette personer i databasen.
 Vi forsøgte at implementere security til denne del. Man kunne dog ikke benytte create, edit eller delete, selv hvis man 
 var logget ind, så vi besluttede os for at fjerne det igen. Vi gjorde præcis det samme, som i en tidligere opgave, 
 men uden held.  
+
+<h4><b>Fejl og mangler:</b></h4>
+Vi havde en hel del problemer med at deploye og få database til at virke, men det meste lykkedes til sidst.
+Dog virker vores Get all persons ikke, på trods af at Get one person virker fint på samtlige 59 personer i databasen.
+Billedet nedenfor, viser hvordan det så ud, når vi hentede alle personer på localhost:
+
+<img class="img-responsive" src="images/api.PNG" alt="all persons" />
+
         </pre>
         
         
